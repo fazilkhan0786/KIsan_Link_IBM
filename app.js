@@ -47,63 +47,111 @@ const APP_DATA = Object.freeze({
   // Top 3 Mandis per District (with representative yard names & spreads)
   mandisByDistrict: {
     rajkot: [
-      { name_en: "Gondal Market Yard", name_gu: "ગોંડલ માર્કેટ યાર્ડ", diff: 30, trend: "+₹30" },
-      { name_en: "Rajkot Main APMC", name_gu: "રાજકોટ મુખ્ય APMC", diff: 0, trend: "+₹20" },
-      { name_en: "Jetpur APMC Yard", name_gu: "જેતપુર APMC યાર્ડ", diff: -40, trend: "+₹15" }
+      { name_en: "Gondal Market Yard", name_gu: "ગોંડલ માર્કેટ યાર્ડ", diff: 30, trend: "+₹30", isBest: true },
+      { name_en: "Rajkot Main APMC", name_gu: "રાજકોટ મુખ્ય APMC", diff: 0, trend: "+₹20", isBest: false },
+      { name_en: "Jetpur APMC Yard", name_gu: "જેતપુર APMC યાર્ડ", diff: -40, trend: "+₹15", isBest: false }
     ],
     junagadh: [
-      { name_en: "Junagadh APMC Yard", name_gu: "જૂનાગઢ APMC યાર્ડ", diff: 20, trend: "+₹40" },
-      { name_en: "Keshod Market Yard", name_gu: "કેશોદ માર્કેટ યાર્ડ", diff: 0, trend: "+₹25" },
-      { name_en: "Visavadar APMC", name_gu: "વિસાવદર APMC", diff: -30, trend: "+₹20" }
+      { name_en: "Junagadh APMC Yard", name_gu: "જૂનાગઢ APMC યાર્ડ", diff: 20, trend: "+₹40", isBest: true },
+      { name_en: "Keshod Market Yard", name_gu: "કેશોદ માર્કેટ યાર્ડ", diff: 0, trend: "+₹25", isBest: false },
+      { name_en: "Visavadar APMC", name_gu: "વિસાવદર APMC", diff: -30, trend: "+₹20", isBest: false }
     ],
     bhavnagar: [
-      { name_en: "Mahuva Market Yard", name_gu: "મહુવા માર્કેટ યાર્ડ", diff: 25, trend: "+₹35" },
-      { name_en: "Bhavnagar APMC", name_gu: "ભાવનગર APMC", diff: 0, trend: "+₹30" },
-      { name_en: "Talaja APMC Yard", name_gu: "તળાજા APMC યાર્ડ", diff: -40, trend: "+₹15" }
+      { name_en: "Mahuva Market Yard", name_gu: "મહુવા માર્કેટ યાર્ડ", diff: 25, trend: "+₹35", isBest: true },
+      { name_en: "Bhavnagar APMC", name_gu: "ભાવનગર APMC", diff: 0, trend: "+₹30", isBest: false },
+      { name_en: "Talaja APMC Yard", name_gu: "તળાજા APMC યાર્ડ", diff: -40, trend: "+₹15", isBest: false }
     ],
     amreli: [
-      { name_en: "Amreli Main Yard", name_gu: "અમરેલી મુખ્ય યાર્ડ", diff: 20, trend: "+₹40" },
-      { name_en: "Savarkundla APMC", name_gu: "સાવરકુંડલા APMC", diff: 0, trend: "+₹30" },
-      { name_en: "Dhari Market Yard", name_gu: "ધારી માર્કેટ યાર્ડ", diff: -30, trend: "+₹20" }
+      { name_en: "Amreli Main Yard", name_gu: "અમરેલી મુખ્ય યાર્ડ", diff: 20, trend: "+₹40", isBest: true },
+      { name_en: "Savarkundla APMC", name_gu: "સાવરકુંડલા APMC", diff: 0, trend: "+₹30", isBest: false },
+      { name_en: "Dhari Market Yard", name_gu: "ધારી માર્કેટ યાર્ડ", diff: -30, trend: "+₹20", isBest: false }
     ],
     banaskantha: [
-      { name_en: "Deesa Market Yard", name_gu: "ડીસા માર્કેટ યાર્ડ", diff: 30, trend: "+₹30" },
-      { name_en: "Palanpur APMC", name_gu: "પાલનપુર APMC", diff: 0, trend: "+₹20" },
-      { name_en: "Tharad APMC Yard", name_gu: "થરાદ APMC યાર્ડ", diff: -40, trend: "+₹15" }
+      { name_en: "Deesa Market Yard", name_gu: "ડીસા માર્કેટ યાર્ડ", diff: 30, trend: "+₹30", isBest: true },
+      { name_en: "Palanpur APMC", name_gu: "પાલનપુર APMC", diff: 0, trend: "+₹20", isBest: false },
+      { name_en: "Tharad APMC Yard", name_gu: "થરાદ APMC યાર્ડ", diff: -40, trend: "+₹15", isBest: false }
     ]
   },
-  // 6 Pre-written Static Reason Strings (English & Gujarati)
-  advisoryReasons: {
+  // Structured AI Decision Intelligence Models
+  decisionModels: {
     cotton: {
-      sell: {
-        en: "Current mandi arrivals are tightening and mill demand is at peak weekly levels (₹7,450/q).",
-        gu: "હાલમાં મિલોની માંગ ઉચ્ચ સ્તરે છે અને કપાસના ભાવ શિખરે છે (₹૭,૪૫૦/ક્વિન્ટલ)."
+      action: "partial",
+      actionTitle: { en: "HOLD PARTIALLY", gu: "અડધો પાક વેચો (૫૦%)" },
+      confidence: 74,
+      trendPct: "+2.7%",
+      split: { sellPct: 40, holdPct: 60 },
+      splitSellDesc: {
+        en: "Secure immediate cashflow & cover harvest operational costs",
+        gu: "હાલના સારા ભાવે ૪૦% જથ્થો વેચી રોકડ મેળવો અને ખર્ચ કાઢો"
       },
-      hold: {
-        en: "Export inquiry expected to rise next fortnight; prices projected to gain ₹150–₹200/quintal.",
-        gu: "આગામી પખવાડિયામાં નિકાસ માંગ વધવાની ધારણા છે; ભાવ ₹૧૫૦-₹૨૦૦ વધવાની શક્યતા છે."
+      splitHoldDesc: {
+        en: "Target ₹7,650/q upside as export & spinning demand strengthens",
+        gu: "નિકાસ માંગ વધતાં ₹૭,૬૫૦/ક્વિન્ટલના લક્ષ્ય માટે ૬૦% જથ્થો રોકો"
       },
-      partial: {
-        en: "Market volatility is high; liquidate 40-50% stock at current strong price to secure cashflow.",
-        gu: "બજારમાં ઉતાર-ચઢાવ વધુ છે; જોખમ ઘટાડવા ૪૦-૫૦% જથ્થો હાલના સારા ભાવે વેચો."
-      }
+      targetPrice: 7650,
+      evidence: [
+        {
+          icon: "📈",
+          title: { en: "Price Trend", gu: "ભાવ ટ્રેન્ડ" },
+          desc: { en: "+2.7% steady gain over the last 7 days with consistent upward momentum.", gu: "છેલ્લા ૭ દિવસમાં ભાવમાં +૨.૭% નો સતત સુધારો અને મજબૂત વલણ." }
+        },
+        {
+          icon: "🏢",
+          title: { en: "Nearby Market Spread", gu: "નજીકના યાર્ડની સરખામણી" },
+          desc: { en: "Gondal Market Yard is currently trading ₹30/q above local benchmark.", gu: "ગોંડલ માર્કેટ યાર્ડમાં સ્થાનિક કરતાં ₹૩૦/ક્વિન્ટલ ઊંચો ભાવ બોલાય છે." }
+        },
+        {
+          icon: "📦",
+          title: { en: "Market Arrivals", gu: "બજાર આવક અને માંગ" },
+          desc: { en: "Saurashtra mandi arrivals are stabilizing while ginning & mill inquiries remain steady.", gu: "સૌરાષ્ટ્ર યાર્ડમાં નવી આવક સ્થિર છે અને જીનીંગ મિલોની સક્રિય માંગ છે." }
+        },
+        {
+          icon: "🎯",
+          title: { en: "Suggested Action", gu: "ભલામણ કરેલ પગલું" },
+          desc: { en: "Avoid selling entire harvest at once; staged 40/60 selling split optimizes realization.", gu: "આજે બધો માલ વેચવાને બદલે ૪૦/૬૦ ના પ્રમાણમાં વેચી સરેરાશ નફો વધારો." }
+        }
+      ]
     },
     groundnut: {
-      sell: {
-        en: "Oil mill crushing demand is highest this week with peak procurement rates (₹6,350/q).",
-        gu: "તેલ મિલોમાં પીલાણની માંગ વધુ છે અને હાલમાં સૌથી સારો ટેકાનો ભાવ મળી રહ્યો છે (₹૬,૩૫૦/ક્વિન્ટલ)."
+      action: "hold",
+      actionTitle: { en: "HOLD 1–2 WEEKS", gu: "૧-૨ અઠવાડિયા રોકો (HOLD)" },
+      confidence: 82,
+      trendPct: "+4.1%",
+      split: { sellPct: 20, holdPct: 80 },
+      splitSellDesc: {
+        en: "Sell 20% only if immediate working capital is necessary",
+        gu: "જો તાત્કાલિક રોકડની જરૂર હોય તો જ ૨૦% વેચો"
       },
-      hold: {
-        en: "Arrival pressure in Saurashtra mandis easing soon; holding will yield better quality premiums.",
-        gu: "સૌરાષ્ટ્રની માર્કેટિંગ યાર્ડમાં નવી આવક સ્થિર થતાં આગામી દિવસોમાં સારા પ્રીમિયમ મળશે."
+      splitHoldDesc: {
+        en: "Hold 80% for 10–14 days for post-festival oil mill buying surge",
+        gu: "તહેવાર પછી તેલ મિલોની મોટી માંગ માટે ૮૦% જથ્થો સાચવી રાખો"
       },
-      partial: {
-        en: "Secure production costs now with 50% lot sale, hold remaining for post-festival price bounce.",
-        gu: "૫૦% માલ વેચી ઉત્પાદન ખર્ચ સુરક્ષિત કરો, બાકીનો જથ્થો તહેવાર પછીના સુધારા માટે રોકો."
-      }
+      targetPrice: 6580,
+      evidence: [
+        {
+          icon: "📈",
+          title: { en: "Price Trend", gu: "ભાવ ટ્રેન્ડ" },
+          desc: { en: "+4.1% solid gain from ₹6,180 to ₹6,420/q over past week.", gu: "છેલ્લા અઠવાડિયામાં ₹૬,૧૮૦ થી વધીને ₹૬,૪૨૦/ક્વિન્ટલ સુધી તેજી." }
+        },
+        {
+          icon: "🏢",
+          title: { en: "Nearby Market Spread", gu: "નજીકના યાર્ડની સરખામણી" },
+          desc: { en: "Junagadh & Keshod APMC offer higher realization on high-oil seed varieties.", gu: "જૂનાગઢ અને કેશોદ APMC માં સારી ગુણવત્તા પર પ્રીમિયમ ભાવ મળે છે." }
+        },
+        {
+          icon: "🏭",
+          title: { en: "Crusher Demand", gu: "તેલ મિલોની ખરીદી" },
+          desc: { en: "Regional oil crushers operating at high capacity with low buffer inventories.", gu: "તેલ મિલોમાં પીલાણ ક્ષમતા વધી છે અને બફર સ્ટોક ઓછો છે." }
+        },
+        {
+          icon: "🎯",
+          title: { en: "Suggested Action", gu: "ભલામણ કરેલ પગલું" },
+          desc: { en: "Hold majority harvest for 10–14 days to maximize season-peak returns.", gu: "વધુ ભાવ મેળવવા માટે મોટો જથ્થો ૧૦-૧૪ દિવસ સાચવી રાખો." }
+        }
+      ]
     }
   },
-  // Static List of 5 Mock Buyers
+  // Static List of 5 Sample Buyers (Clearly Labeled as Prototype Profiles)
   buyers: [
     {
       id: "buyer_1",
@@ -116,8 +164,8 @@ const APP_DATA = Object.freeze({
       trust: 5,
       location_en: "Rajkot Industrial Area",
       location_gu: "રાજકોટ ઔદ્યોગિક વિસ્તાર",
-      badge_en: "Govt Certified Buyer",
-      badge_gu: "સરકાર માન્ય ખરીદદાર"
+      badge_en: "Sample Profile · Spinning Mill",
+      badge_gu: "સેમ્પલ પ્રોફાઇલ · સ્પિનિંગ મિલ"
     },
     {
       id: "buyer_2",
@@ -130,8 +178,8 @@ const APP_DATA = Object.freeze({
       trust: 5,
       location_en: "Junagadh By-pass",
       location_gu: "જૂનાગઢ બાયપાસ",
-      badge_en: "Direct Exporter",
-      badge_gu: "સીધા નિકાસકાર"
+      badge_en: "Demo Partner · Oil Industries",
+      badge_gu: "ડેમો પાર્ટનર · ઓઇલ ઇન્ડસ્ટ્રીઝ"
     },
     {
       id: "buyer_3",
@@ -144,8 +192,8 @@ const APP_DATA = Object.freeze({
       trust: 5,
       location_en: "Gondal Road, Rajkot",
       location_gu: "ગોંડલ રોડ, રાજકોટ",
-      badge_en: "Instant 24h Payment",
-      badge_gu: "૨૪ કલાકમાં પેમેન્ટ"
+      badge_en: "Sample Profile · Ginning Mill",
+      badge_gu: "સેમ્પલ પ્રોફાઇલ · જીનીંગ મીલ"
     },
     {
       id: "buyer_4",
@@ -158,8 +206,8 @@ const APP_DATA = Object.freeze({
       trust: 4,
       location_en: "Amreli Road, Bhavnagar",
       location_gu: "અમરેલી રોડ, ભાવનગર",
-      badge_en: "Verified FPO Partner",
-      badge_gu: "વેરિફાઇડ FPO પાર્ટનર"
+      badge_en: "Demo Partner · Oil Mill",
+      badge_gu: "ડેમો પાર્ટનર · ઓઇલ મીલ"
     },
     {
       id: "buyer_5",
@@ -172,8 +220,8 @@ const APP_DATA = Object.freeze({
       trust: 5,
       location_en: "Deesa Highway, Banaskantha",
       location_gu: "ડીસા હાઇવે, બનાસકાંઠા",
-      badge_en: "Bulk Procurement",
-      badge_gu: "જથ્થાબંધ ખરીદદાર"
+      badge_en: "Sample Profile · Commodity Buyer",
+      badge_gu: "સેમ્પલ પ્રોફાઇલ · કોમોડિટી ખરીદદાર"
     }
   ]
 });
@@ -185,12 +233,21 @@ const APP_DATA = Object.freeze({
 const I18N = Object.freeze({
   en: {
     appName: "KisanLink",
-    appTagline: "Gujarat Market Linkage Platform",
+    appTagline: "AI Market Linkage & Decision Support",
     langToggle: "ગુજરાતી",
-    heroTitle: "Empowering Gujarat Farmers",
-    heroSub: "Direct mandi price intelligence, AI advisory, and verified buyers without middleman cuts.",
-    heroBadge: "IBM Bob & Granite AI",
     
+    // Hero
+    heroPillText: "AI Decision Support for Gujarat Farmers",
+    heroTitle: "Make the right selling decision.",
+    heroSub: "Better prices. Better markets. Better decisions for Gujarat’s farmers.",
+    heroCtaBtnText: "Get Selling Recommendation",
+    
+    // Flow Steps
+    flowStep1: "Market Data",
+    flowStep2: "Trend Analysis",
+    flowStep3: "AI Advisory",
+    flowStep4: "Selling Strategy",
+
     // Quick Nav Titles
     navHome: "Home",
     navPrices: "Prices",
@@ -198,78 +255,108 @@ const I18N = Object.freeze({
     navBuyers: "Buyers",
     navDashboard: "Dashboard",
 
-    actionPricesTitle: "Check Today's Price",
-    actionPricesSub: "Live Mandi & 7-Day Trend",
-    actionAdvisorTitle: "Sell or Hold Advisory",
+    actionPricesTitle: "Compare Mandis",
+    actionPricesSub: "Rates & 7-Day Trends",
+    actionAdvisorTitle: "Sell or Hold Advisor",
     actionAdvisorSub: "Granite AI Recommendation",
-    actionBuyersTitle: "Direct Verified Buyers",
-    actionBuyersSub: "5 Pre-Approved Mills",
-    actionDashboardTitle: "Income Dashboard",
-    actionDashboardSub: "Middleman vs KisanLink",
+    actionBuyersTitle: "Sample Buyer Profiles",
+    actionBuyersSub: "Direct Mill Linkage",
+    actionDashboardTitle: "Income Impact",
+    actionDashboardSub: "Strategy vs Distress Sale",
 
     // Market Snapshot
     snapshotTitle: "Today's Saurashtra Spot Prices",
-    snapshotSub: "Updated 10 mins ago from APMC",
+    snapshotSub: "Demonstration snapshot based on Gujarat APMC market structure",
+
+    // Illustrative Impact Story
+    impactBadge: "Illustrative Example",
+    impactTitle: "How a Smarter Selling Decision Creates Value",
+    impactSub: "Scenario based on 80 Quintals Cotton harvest in Saurashtra",
+    impactTradLabel: "Traditional Rushed Sale",
+    impactTradNote: "Sold 100% on day 1 to local middleman",
+    impactKlLabel: "KisanLink Staged Strategy",
+    impactKlNote: "Sold 40% for cash, held 60% for peak week",
+    impactDiffText: "Illustrative Potential Difference:",
+    impactDisclaimer: "*Illustrative calculation based on prototype APMC benchmark spreads. Demonstrates decision value, not guaranteed profit.",
 
     // Prices Screen
     filterCropLabel: "Select Crop",
     filterDistrictLabel: "Select District",
     priceTrendTitle: "7-Day Price Trend",
+    chartSub: "Daily APMC Closing",
     currentPriceLabel: "Current Modal Price",
     perQuintal: "₹ / Quintal",
     topMandisTitle: "Top 3 Nearby Mandis",
-    topMandisSub: "Sorted by today's highest realized price",
-    jumpToAdvisorBtn: "Check Sell/Hold Advisory for this crop",
+    topMandisSub: "Compare nearby yards for better realization",
+    bestNearbyTag: "⭐ Best Nearby Option",
+    jumpAdvisorBtn: "Get Selling Recommendation for this crop",
 
     // Advisor Screen
-    advisorFormTitle: "AI Sell-or-Hold Advisor",
-    advisorFormSub: "Powered by IBM Granite LLM reasoning engine",
-    qtyLabel: "Crop Quantity (in Quintals)",
+    advTitle: "AI Sell-or-Hold Advisor",
+    advSub: "Market Advisor powered by IBM Granite",
+    qtyLabel: "Harvest Quantity (in Quintals)",
     getAdviceBtn: "Analyze Market & Get Advice",
     analyzingText: "IBM Granite AI Reasoning...",
-    recTitle: "Advisory Recommendation",
-    recSell: "Sell Now",
-    recHold: "Hold 1–2 Weeks",
-    recPartial: "Sell Partially (50%)",
-    confidenceBadge: "Granite AI High Confidence",
-    findBuyersCTA: "View Matched Direct Buyers",
-    viewDashboardCTA: "Calculate Net Profit Gained",
+    engineTag: "IBM Granite Market Advisor",
+    whyTitle: "Why this recommendation?",
+    stratBadge: "Actionable Strategy",
+    stratTitle: "Suggested Selling Strategy",
+    bestMandiLabel: "Best Nearby Market:",
+    pipelineNote: "Market Data → IBM Granite Reasoning → Farmer-Friendly Strategy",
+    advBuyersBtn: "View Sample Matched Buyers",
+    advDashBtn: "Estimate Selling Income Impact",
     invalidQtyError: "Please enter a valid harvest quantity between 1 and 10,000 Quintals.",
 
     // Buyers Screen
-    buyersTitle: "Verified Direct Buyers",
-    buyersSub: "Direct mill procurement with zero middleman brokerage",
+    buyerDemoTag: "Prototype Demo",
+    buyersTitle: "Sample Buyer Marketplace",
+    buyersSub: "Demo profiles for direct mill linkage with zero middleman brokerage",
     allCrops: "All Crops",
     cottonOnly: "Cotton",
     groundnutOnly: "Groundnut",
     qtyRequired: "Demand",
     offeredPrice: "Offer Price",
     contactBuyerBtn: "Contact Buyer",
-    noBuyersFound: "No verified buyers found for this category.",
+    noBuyersFound: "No sample buyers found for this category.",
 
     // Dashboard Screen
-    dashTitle: "Income Impact Comparison",
-    dashSub: "Sample harvest sale: 50 Quintals direct comparison",
-    middlemanLabel: "Via Middleman",
-    kisanlinkLabel: "Via KisanLink",
-    gainCallout: "Extra Income Gained",
-    sampleSaleNote: "Based on 50 Quintals standard lot",
-    breakdownTitle: "Financial Advantage Breakdown",
-    savedCommission: "Middleman Commission Saved (4%)",
-    weighingGain: "Fair Digital Weighing Protection",
-    directPremium: "Direct Mill Premium",
-    totalBenefit: "Total Extra Earnings in Hand",
-    qtySliderLabel: "Adjust Quantity to Calculate Gain",
-    calcGainSuffix: "Direct Farmer Gain"
+    dashTitle: "Income Impact Estimation",
+    dashSub: "Illustrative scenario: Staged selling & direct linkage vs. middleman distress sale",
+    dashGainCallout: "Estimated Strategy Uplift",
+    middlemanLabel: "Via Traditional Middleman Sale",
+    kisanlinkLabel: "Via KisanLink Selling Strategy",
+    sampleSaleNote: "Potential Direct Farmer Difference",
+    sliderLabel: "Adjust Quantity to Estimate Gain",
+    sliderSub: "Simulate potential outcomes for your harvest",
+    breakdownTitle: "Estimated Advantage Breakdown",
+    breakdownSub: "Component-wise financial difference",
+    savedCommission: "Middleman Brokerage Saved (4%)",
+    savedCommissionSub: "Zero commission cut",
+    weighingGain: "Digital Weighing Protection",
+    weighingGainSub: "Standard fair weighment without cuts",
+    directPremium: "Strategic Timing & Direct Price Gain",
+    directPremiumSub: "Selling decision realization difference",
+    totalBenefit: "Total Estimated Extra Realization",
+    totalBenefitSub: "Direct to Farmer",
+    dashDisclaimer: "*Prototype calculations based on mock Saurashtra market spreads. Realization depends on actual crop grade, moisture, and APMC daily auction rates."
   },
   gu: {
     appName: "કિસાન લિંક",
-    appTagline: "ગુજરાત માર્કેટ લિંકેજ પ્લેટફોર્મ",
+    appTagline: "ગુજરાત માર્કેટ લિંકેજ અને વેચાણ નિર્ણય",
     langToggle: "English",
-    heroTitle: "ગુજરાતના ખેડૂતો માટે સ્માર્ટ બજાર",
-    heroSub: "દલાલ વગર સાચા માર્કેટ યાર્ડના ભાવ, AI વેચાણ સલાહ અને સીધા ખરીદદારો સાથે જોડાણ.",
-    heroBadge: "IBM બોબ અને ગ્રેનાઇટ AI",
     
+    // Hero
+    heroPillText: "ગુજરાતના ખેડૂતો માટે AI વેચાણ નિર્ણય સહાય",
+    heroTitle: "યોગ્ય વેચાણ નિર્ણય લો.",
+    heroSub: "વધુ સારા ભાવ. શ્રેષ્ઠ બજાર યાર્ડ. ગુજરાતના ખેડૂતો માટે સચોટ વેચાણ નિર્ણય.",
+    heroCtaBtnText: "વેચાણ ભલામણ મેળવો",
+
+    // Flow Steps
+    flowStep1: "બજાર ભાવ",
+    flowStep2: "ટ્રેન્ડ વિશ્લેષણ",
+    flowStep3: "AI સલાહ",
+    flowStep4: "વેચાણ વ્યૂહરચના",
+
     // Quick Nav Titles
     navHome: "હોમ",
     navPrices: "ભાવ",
@@ -277,47 +364,62 @@ const I18N = Object.freeze({
     navBuyers: "ખરીદદારો",
     navDashboard: "નફો/ડેશબોર્ડ",
 
-    actionPricesTitle: "આજના બજાર ભાવ જુઓ",
-    actionPricesSub: "યાર્ડ ભાવ અને ૭-દિવસનો ચાર્ટ",
+    actionPricesTitle: "બજાર યાર્ડ સરખાવો",
+    actionPricesSub: "આજના ભાવ અને ૭-દિવસનો ટ્રેન્ડ",
     actionAdvisorTitle: "વેચવું કે રોકવું? (AI સલાહ)",
-    actionAdvisorSub: "ગ્રેનાઇટ AI ની સચોટ ભલામણ",
-    actionBuyersTitle: "સીધા વેરિફાઇડ ખરીદદારો",
-    actionBuyersSub: "૫ પ્રમાણિત મિલો અને વેપારીઓ",
-    actionDashboardTitle: "નફાનું સરવૈયું / ડેશબોર્ડ",
-    actionDashboardSub: "દલાલ વિરુદ્ધ કિસાન લિંક",
+    actionAdvisorSub: "ગ્રેનાઇટ AI વેચાણ ભલામણ",
+    actionBuyersTitle: "નમૂના ખરીદદારોની યાદી",
+    actionBuyersSub: "દલાલ વગર મિલ જોડાણ",
+    actionDashboardTitle: "નફાનું સરવૈયું",
+    actionDashboardSub: "વ્યૂહરચના વિરુદ્ધ ઉતાવળિયું વેચાણ",
 
     // Market Snapshot
     snapshotTitle: "આજના સૌરાષ્ટ્ર માર્કેટ યાર્ડ સ્પોટ ભાવ",
-    snapshotSub: "APMC માંથી તાજા અપડેટ થયેલ ભાવ",
+    snapshotSub: "ગુજરાત APMC માળખા આધારિત ડેમો માર્કેટ સ્નેપશોટ",
+
+    // Illustrative Impact Story
+    impactBadge: "ઉદાહરણરૂપ સરખામણી",
+    impactTitle: "સમજુ વેચાણ નિર્ણયથી ખેડૂતને થતો ફાયદો",
+    impactSub: "સૌરાષ્ટ્રમાં ૮૦ ક્વિન્ટલ કપાસના વેચાણ પર આધારિત ઉદાહરણ",
+    impactTradLabel: "પરંપરાગત ઉતાવળિયું વેચાણ",
+    impactTradNote: "દલાલને પ્રથમ દિવસે જ બધો માલ વેચી દીધો",
+    impactKlLabel: "કિસાન લિંક તબક્કાવાર વ્યૂહરચના",
+    impactKlNote: "૪૦% રોકડ માટે વેચ્યો, ૬૦% તેજીમાં વેચ્યો",
+    impactDiffText: "અંદાજિત સંભવિત તફાવત:",
+    impactDisclaimer: "*પ્રોટોટાઇપ બજાર ગણતરી પર આધારિત ઉદાહરણ. નિર્ણયનું મહત્વ દર્શાવે છે, બાંહેધરીકૃત નફો નથી.",
 
     // Prices Screen
     filterCropLabel: "પાક પસંદ કરો",
     filterDistrictLabel: "જિલ્લો પસંદ કરો",
     priceTrendTitle: "૭-દિવસનો ભાવ ટ્રેન્ડ ચાર્ટ",
+    chartSub: "દૈનિક APMC ક્લોઝિંગ",
     currentPriceLabel: "હાલનો સરેરાશ બજાર ભાવ",
     perQuintal: "₹ / ક્વિન્ટલ",
     topMandisTitle: "ટોપ ૩ નજીકના માર્કેટ યાર્ડ",
-    topMandisSub: "આજના સૌથી વધુ ભાવ મુજબ ગોઠવેલ",
-    jumpToAdvisorBtn: "આ પાક માટે વેચાણ સલાહ મેળવો",
+    topMandisSub: "વધુ ભાવ મેળવવા નજીકના યાર્ડ સરખાવો",
+    bestNearbyTag: "⭐ શ્રેષ્ઠ નજીકનો વિકલ્પ",
+    jumpAdvisorBtn: "આ પાક માટે વેચાણ ભલામણ મેળવો",
 
     // Advisor Screen
-    advisorFormTitle: "AI વેચાણ-રોકાણ સલાહકાર",
-    advisorFormSub: "IBM ગ્રેનાઇટ LLM એનાલિટિક્સ આધારિત",
-    qtyLabel: "પાકનો અંદાજિત જથ્થો (ક્વિન્ટલમાં)",
+    advTitle: "AI વેચાણ-રોકાણ સલાહકાર",
+    advSub: "IBM ગ્રેનાઇટ LLM એનાલિટિક્સ આધારિત",
+    qtyLabel: "પાકનો જથ્થો (ક્વિન્ટલમાં)",
     getAdviceBtn: "બજાર ચકાસી સલાહ મેળવો",
     analyzingText: "IBM ગ્રેનાઇટ AI વિશ્લેષણ કરે છે...",
-    recTitle: "AI સલાહકાર ભલામણ",
-    recSell: "હમણાં વેચો (Sell Now)",
-    recHold: "૧-૨ અઠવાડિયા રોકો (Hold)",
-    recPartial: "અડધો પાક વેચો (૫૦%)",
-    confidenceBadge: "ગ્રેનાઇટ AI સચોટ વિશ્લેષણ",
-    findBuyersCTA: "યોગ્ય ખરીદદારોની યાદી જુઓ",
-    viewDashboardCTA: "વધારાનો ચોખ્ખો નફો ગણો",
+    engineTag: "IBM ગ્રેનાઇટ માર્કેટ એડવાઇઝર",
+    whyTitle: "આ ભલામણ શા માટે?",
+    stratBadge: "અમલ કરવા યોગ્ય વ્યૂહરચના",
+    stratTitle: "સૂચવેલ વેચાણ વ્યૂહરચના",
+    bestMandiLabel: "શ્રેષ્ઠ નજીકનું માર્કેટ યાર્ડ:",
+    pipelineNote: "બજાર ડેટા → IBM ગ્રેનાઇટ વિશ્લેષણ → ખેડૂત-હિત લક્ષી વ્યૂહરચના",
+    advBuyersBtn: "નમૂના ખરીદદારોની યાદી જુઓ",
+    advDashBtn: "વેચાણ નફાનું અંદાજિત સરવૈયું",
     invalidQtyError: "કૃપા કરીને ૧ થી ૧૦,૦૦૦ ક્વિન્ટલ વચ્ચે સાચો જથ્થો દાખલ કરો.",
 
     // Buyers Screen
-    buyersTitle: "વેરિફાઇડ સીધા ખરીદદારો",
-    buyersSub: "દલાલી કે કમિશન વગર સીધું મિલ સાથે જોડાણ",
+    buyerDemoTag: "ડેમો પ્રોટોટાઇપ",
+    buyersTitle: "નમૂના ખરીદદારોની માર્કેટપ્લેસ",
+    buyersSub: "દલાલી વગર સીધું મિલ સાથે જોડાણ દર્શાવતી ડેમો પ્રોફાઇલ",
     allCrops: "બધા પાક",
     cottonOnly: "કપાસ",
     groundnutOnly: "મગફળી",
@@ -327,19 +429,25 @@ const I18N = Object.freeze({
     noBuyersFound: "આ કેટેગરી માટે કોઈ ખરીદદાર મળ્યા નથી.",
 
     // Dashboard Screen
-    dashTitle: "નફાની સીધી સરખામણી",
-    dashSub: "૫૦ ક્વિન્ટલના વેચાણ પર દલાલ વિરુદ્ધ કિસાન લિંક",
-    middlemanLabel: "દલાલ / વચેટિયા દ્વારા",
-    kisanlinkLabel: "કિસાન લિંક દ્વારા",
-    gainCallout: "ખેડૂતનો સીધો વધારાનો નફો",
-    sampleSaleNote: "૫૦ ક્વિન્ટલના પ્રમાણિત લોટ મુજબ ગણતરી",
+    dashTitle: "નફાની અંદાજિત સરખામણી",
+    dashSub: "વ્યૂહરચના આધારિત વેચાણ વિરુદ્ધ દલાલ દ્વારા ઉતાવળિયા વેચાણની સરખામણી",
+    dashGainCallout: "વ્યૂહરચનાથી અંદાજિત વધારો",
+    middlemanLabel: "પરંપરાગત દલાલ દ્વારા વેચાણ",
+    kisanlinkLabel: "કિસાન લિંક વેચાણ વ્યૂહરચના દ્વારા",
+    sampleSaleNote: "ખેડૂતને મળતો સંભવિત સીધો લાભ",
+    sliderLabel: "જથ્થો બદલીને અંદાજ મેળવો",
+    sliderSub: "તમારા પાક મુજબ સંભવિત નફાનું સિમ્યુલેશન",
     breakdownTitle: "નાણાકીય ફાયદાની વિગત",
+    breakdownSub: "ઘટક મુજબ સંભવિત વધારાની આવક",
     savedCommission: "બચેલી દલાલી અને કમિશન (૪%)",
+    savedCommissionSub: "કોઈ દલાલી કપાત નહીં",
     weighingGain: "ડિજિટલ કાંટાથી યોગ્ય વજન ફાયદો",
-    directPremium: "મિલો દ્વારા સીધો ઊંચો ભાવ",
-    totalBenefit: "ખેડૂતના હાથમાં મળતો ચોખ્ખો વધારાનો નફો",
-    qtySliderLabel: "જથ્થો બદલીને નફો ગણો",
-    calcGainSuffix: "ખેડૂતને સીધો ચોખ્ખો લાભ"
+    weighingGainSub: "કોઈ છૂપી વજન કપાત વગર",
+    directPremium: "સમયસર વેચાણ અને સીધો ઊંચો ભાવ",
+    directPremiumSub: "યોગ્ય નિર્ણયથી મળેલ વધારાનો દર",
+    totalBenefit: "ખેડૂતના હાથમાં મળતો કુલ વધારાનો નફો",
+    totalBenefitSub: "ખેડૂતને સીધો મળવાપાત્ર",
+    dashDisclaimer: "*સૌરાષ્ટ્ર યાર્ડના મોક ડેટા મુજબ અંદાજિત ગણતરી. વાસ્તવિક ભાવ પાકની ગુણવત્તા, ભેજ અને દૈનિક હરાજી પર આધાર રાખે છે."
   }
 });
 
@@ -439,6 +547,14 @@ function bindEvents() {
     langBtn.addEventListener("click", toggleLanguage);
   }
 
+  // Hero Primary CTA on Home Screen
+  const heroCtaBtn = document.getElementById("hero-advisor-cta");
+  if (heroCtaBtn) {
+    heroCtaBtn.addEventListener("click", () => {
+      switchScreen("advisor");
+    });
+  }
+
   // Bottom Navigation Buttons (with ARIA tablist support)
   document.querySelectorAll(".nav-tab-btn").forEach(btn => {
     btn.addEventListener("click", () => {
@@ -535,8 +651,9 @@ function bindEvents() {
         }
         advisorQtyInput.classList.remove("kl-input-error");
         state.advisorQty = value;
+        renderAdvisorScreen();
       }
-    }, 150));
+    }, 120));
   }
 
   if (getAdviceBtn) {
@@ -588,7 +705,7 @@ function bindEvents() {
       const val = parseInt(e.target.value, 10);
       state.dashboardQty = Number.isFinite(val) ? val : 50;
       renderDashboardScreen();
-    }, 50));
+    }, 40));
   }
 }
 
@@ -648,16 +765,28 @@ function updateLanguageUI() {
   if (appTagline) appTagline.textContent = t.appTagline;
   if (langToggleText) langToggleText.textContent = t.langToggle;
 
-  // Bottom Nav Labels
+  // Complete UI Labels Mapping
   const labels = {
+    // Bottom Nav
     "nav-label-home": t.navHome,
     "nav-label-prices": t.navPrices,
     "nav-label-advisor": t.navAdvisor,
     "nav-label-buyers": t.navBuyers,
     "nav-label-dashboard": t.navDashboard,
-    "hero-badge": t.heroBadge,
+
+    // Hero Section
+    "hero-pill-text": t.heroPillText,
     "hero-title": t.heroTitle,
     "hero-sub": t.heroSub,
+    "hero-cta-btn-text": t.heroCtaBtnText,
+
+    // Decision Flow Bar
+    "flow-step-1": t.flowStep1,
+    "flow-step-2": t.flowStep2,
+    "flow-step-3": t.flowStep3,
+    "flow-step-4": t.flowStep4,
+
+    // Quick Action Cards
     "action-prices-title": t.actionPricesTitle,
     "action-prices-sub": t.actionPricesSub,
     "action-advisor-title": t.actionAdvisorTitle,
@@ -666,40 +795,78 @@ function updateLanguageUI() {
     "action-buyers-sub": t.actionBuyersSub,
     "action-dash-title": t.actionDashboardTitle,
     "action-dash-sub": t.actionDashboardSub,
+
+    // Market Snapshot
     "snapshot-title": t.snapshotTitle,
     "snapshot-sub": t.snapshotSub,
+
+    // Illustrative Impact Story
+    "lbl-impact-badge": t.impactBadge,
+    "lbl-impact-title": t.impactTitle,
+    "lbl-impact-sub": t.impactSub,
+    "lbl-impact-trad-label": t.impactTradLabel,
+    "lbl-impact-trad-note": t.impactTradNote,
+    "lbl-impact-kl-label": t.impactKlLabel,
+    "lbl-impact-kl-note": t.impactKlNote,
+    "lbl-impact-diff-text": t.impactDiffText,
+    "lbl-impact-disclaimer": t.impactDisclaimer,
+
+    // Prices Screen
     "lbl-filter-crop": t.filterCropLabel,
     "lbl-filter-dist": t.filterDistrictLabel,
     "lbl-price-trend-title": t.priceTrendTitle,
+    "lbl-chart-sub": t.chartSub,
     "lbl-current-price-tag": t.currentPriceLabel,
     "lbl-price-unit": t.perQuintal,
     "lbl-top-mandis-title": t.topMandisTitle,
     "lbl-top-mandis-sub": t.topMandisSub,
-    "lbl-adv-title": t.advisorFormTitle,
-    "lbl-adv-sub": t.advisorFormSub,
+    "lbl-best-nearby-tag": t.bestNearbyTag,
+    "lbl-jump-advisor-btn": t.jumpAdvisorBtn,
+
+    // Advisor Screen
+    "lbl-adv-title": t.advTitle,
+    "lbl-adv-sub": t.advSub,
     "lbl-adv-crop": t.filterCropLabel,
     "lbl-adv-dist": t.filterDistrictLabel,
     "lbl-adv-qty": t.qtyLabel,
     "get-advice-btn-text": t.getAdviceBtn,
-    "adv-conf-badge": t.confidenceBadge,
-    "adv-rec-title": t.recTitle,
+    "lbl-adv-engine-tag": t.engineTag,
+    "lbl-why-title": t.whyTitle,
+    "lbl-strat-badge": t.stratBadge,
+    "lbl-strat-title": t.stratTitle,
+    "lbl-adv-mandi-label": t.bestMandiLabel,
+    "lbl-adv-pipeline": t.pipelineNote,
+    "lbl-adv-buyers-btn": t.advBuyersBtn,
+    "lbl-adv-dash-btn": t.advDashBtn,
+
+    // Buyers Screen
+    "lbl-buyer-demo-tag": t.buyerDemoTag,
     "lbl-buyers-title": t.buyersTitle,
     "lbl-buyers-sub": t.buyersSub,
     "tab-filter-all": t.allCrops,
     "tab-filter-cotton": t.cottonOnly,
     "tab-filter-groundnut": t.groundnutOnly,
+
+    // Dashboard Screen
     "lbl-dash-title": t.dashTitle,
     "lbl-dash-sub": t.dashSub,
-    "lbl-dash-gain-callout": t.gainCallout,
+    "lbl-dash-gain-callout": t.dashGainCallout,
     "lbl-dash-middleman": t.middlemanLabel,
     "lbl-dash-kisanlink": t.kisanlinkLabel,
     "lbl-dash-sample-note": t.sampleSaleNote,
+    "lbl-slider-label": t.sliderLabel,
+    "lbl-slider-sub": t.sliderSub,
     "lbl-dash-breakdown-title": t.breakdownTitle,
+    "lbl-dash-breakdown-sub": t.breakdownSub,
     "lbl-dash-saved-comm": t.savedCommission,
+    "lbl-dash-saved-comm-sub": t.savedCommissionSub,
     "lbl-dash-weigh-gain": t.weighingGain,
+    "lbl-dash-weigh-gain-sub": t.weighingGainSub,
     "lbl-dash-mill-prem": t.directPremium,
+    "lbl-dash-mill-prem-sub": t.directPremiumSub,
     "lbl-dash-total-benefit": t.totalBenefit,
-    "lbl-slider-label": t.qtySliderLabel
+    "lbl-dash-total-sub": t.totalBenefitSub,
+    "lbl-dash-disclaimer": t.dashDisclaimer
   };
 
   for (const [id, text] of Object.entries(labels)) {
@@ -722,7 +889,7 @@ function renderHomeSnapshot() {
         <div class="kl-list-item-avatar" aria-hidden="true">🌿</div>
         <div class="kl-list-item-text">
           <span class="kl-list-item-title">${escapeHtml(state.lang === 'gu' ? 'કપાસ (Cotton) - રાજકોટ યાર્ડ' : 'Cotton - Rajkot Mandi')}</span>
-          <span class="kl-list-item-sub">2,400 Qtl arrivals today</span>
+          <span class="kl-list-item-sub">2,400 Qtl arrivals · Modal Price</span>
         </div>
       </div>
       <div class="kl-list-item-right">
@@ -735,7 +902,7 @@ function renderHomeSnapshot() {
         <div class="kl-list-item-avatar" style="background: var(--wheat-100); color: var(--wheat-800);" aria-hidden="true">🥜</div>
         <div class="kl-list-item-text">
           <span class="kl-list-item-title">${escapeHtml(state.lang === 'gu' ? 'મગફળી (Groundnut) - જૂનાગઢ APMC' : 'Groundnut - Junagadh APMC')}</span>
-          <span class="kl-list-item-sub">1,850 Qtl arrivals today</span>
+          <span class="kl-list-item-sub">1,850 Qtl arrivals · Modal Price</span>
         </div>
       </div>
       <div class="kl-list-item-right">
@@ -746,7 +913,7 @@ function renderHomeSnapshot() {
   `;
 }
 
-// Render Prices Screen (Price, SVG Chart, Top 3 Mandis)
+// Render Prices Screen (Price, SVG Chart, Top 3 Mandis, Best Nearby Callout)
 function renderPriceScreen() {
   const crop = state.selectedCrop;
   const dist = state.selectedDistrict;
@@ -772,19 +939,28 @@ function renderPriceScreen() {
   // 2. Render SVG 7-Day Line Chart
   renderSVGChart(series);
 
-  // 3. Render Top 3 Mandis
+  // 3. Render Top 3 Mandis & Best Nearby Option
   const mandisContainer = document.getElementById("top-mandis-list");
+  const bestNearbyTextEl = document.getElementById("best-nearby-mandi-text");
+  const mandis = APP_DATA.mandisByDistrict[dist] || APP_DATA.mandisByDistrict.rajkot;
+  const bestMandi = mandis.find(m => m.isBest) || mandis[0];
+
+  if (bestNearbyTextEl) {
+    const bestName = state.lang === 'gu' ? bestMandi.name_gu : bestMandi.name_en;
+    bestNearbyTextEl.textContent = state.lang === 'gu'
+      ? `${bestName} સ્થાનિક યાર્ડ કરતાં +₹${bestMandi.diff}/ક્વિન્ટલ વધુ ભાવ આપે છે`
+      : `${bestName} offers +₹${bestMandi.diff}/q over local rate`;
+  }
+
   if (mandisContainer) {
-    const mandis = APP_DATA.mandisByDistrict[dist] || APP_DATA.mandisByDistrict.rajkot;
-    
     mandisContainer.innerHTML = mandis.map((m, idx) => {
       const mandiPrice = currentPrice + m.diff;
       return `
         <li class="kl-list-item">
           <div class="kl-list-item-left">
-            <div class="kl-list-item-avatar ${idx === 0 ? '' : 'icon-wheat'}">#${idx + 1}</div>
+            <div class="kl-list-item-avatar ${m.isBest ? '' : 'icon-wheat'}">#${idx + 1}</div>
             <div class="kl-list-item-text">
-              <span class="kl-list-item-title">${escapeHtml(state.lang === 'gu' ? m.name_gu : m.name_en)}</span>
+              <span class="kl-list-item-title">${escapeHtml(state.lang === 'gu' ? m.name_gu : m.name_en)} ${m.isBest ? '⭐' : ''}</span>
               <span class="kl-list-item-sub">
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
                 ${escapeHtml(state.lang === 'gu' ? 'સરકારી યાર્ડ' : 'APMC Regulated')}
@@ -862,55 +1038,105 @@ function renderSVGChart(data) {
   chartBox.innerHTML = svgContent;
 }
 
-// Render Advisor Screen & Recommendation
+// Render Advisor Screen & Deep Recommendation Models
 function renderAdvisorScreen() {
   const crop = state.selectedCrop;
-  const t = I18N[state.lang];
-
-  let recType = "sell";
-  if (crop === "groundnut") {
-    recType = "hold";
-  }
+  const dist = state.selectedDistrict;
+  const qty = state.advisorQty || 50;
+  const model = APP_DATA.decisionModels[crop] || APP_DATA.decisionModels.cotton;
+  
+  const series = APP_DATA.priceMatrix[crop][dist];
+  const currentPrice = series[series.length - 1];
 
   const recCard = document.getElementById("advisor-recommendation-card");
-  const recBadge = document.getElementById("adv-rec-badge");
+  const recBadge = document.getElementById("adv-conf-badge");
   const recActionText = document.getElementById("adv-rec-action-text");
-  const recReasonBox = document.getElementById("adv-rec-reason-box");
+  
+  // 1. Current Condition Strip
+  const cropObj = APP_DATA.crops.find(c => c.id === crop);
+  const distObj = APP_DATA.districts.find(d => d.id === dist);
+  const cropName = state.lang === 'gu' ? cropObj.name_gu : cropObj.name_en;
+  const distName = state.lang === 'gu' ? distObj.name_gu : distObj.name_en;
+
+  const condCropDistEl = document.getElementById("adv-cond-crop-dist");
+  const condPriceEl = document.getElementById("adv-cond-price");
+  const condTrendEl = document.getElementById("adv-cond-trend");
+
+  if (condCropDistEl) condCropDistEl.textContent = `${cropName} · ${distName}`;
+  if (condPriceEl) condPriceEl.textContent = `₹${currentPrice.toLocaleString()} / quintal`;
+  if (condTrendEl) condTrendEl.textContent = `7-Day Trend: ${model.trendPct}`;
 
   if (!recCard) return;
 
-  // Clear previous style classes
+  // 2. Action Type Styling & Confidence Badge
   recCard.classList.remove("advisor-rec--sell", "advisor-rec--hold", "advisor-rec--partial");
+  recCard.classList.add(`advisor-rec--${model.action}`);
 
-  if (recType === "sell") {
-    recCard.classList.add("advisor-rec--sell");
-    recBadge.className = "kl-card-badge kl-badge--green";
-    recBadge.textContent = "RECOMMENDED ACTION";
-    recActionText.innerHTML = `
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-      ${escapeHtml(t.recSell)}
-    `;
-  } else if (recType === "hold") {
-    recCard.classList.add("advisor-rec--hold");
-    recBadge.className = "kl-card-badge kl-badge--wheat";
-    recBadge.textContent = "RECOMMENDED ACTION";
-    recActionText.innerHTML = `
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-      ${escapeHtml(t.recHold)}
-    `;
-  } else {
-    recCard.classList.add("advisor-rec--partial");
-    recBadge.className = "kl-card-badge kl-badge--blue";
-    recBadge.textContent = "RECOMMENDED ACTION";
-    recActionText.innerHTML = `
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a10 10 0 0 1 10 10"/></svg>
-      ${escapeHtml(t.recPartial)}
-    `;
+  if (recActionText) {
+    recActionText.textContent = model.actionTitle[state.lang];
   }
 
-  // Pre-written static reason string per crop & action
-  const reason = APP_DATA.advisoryReasons[crop][recType][state.lang];
-  recReasonBox.textContent = `💡 ${reason}`;
+  if (recBadge) {
+    recBadge.className = `kl-card-badge ${model.action === 'sell' ? 'kl-badge--green' : model.action === 'hold' ? 'kl-badge--wheat' : 'kl-badge--blue'}`;
+    recBadge.textContent = state.lang === 'gu' ? `વિશ્વાસ: ${model.confidence}%` : `Confidence: ${model.confidence}%`;
+  }
+
+  // 3. Render "Why this recommendation?" 4 Structured Evidence Cards
+  const evidenceGrid = document.getElementById("adv-evidence-grid");
+  if (evidenceGrid) {
+    evidenceGrid.innerHTML = model.evidence.map(item => `
+      <div class="evidence-card">
+        <div class="evidence-card-icon" aria-hidden="true">${item.icon}</div>
+        <div class="evidence-card-content">
+          <div class="evidence-card-title">${escapeHtml(item.title[state.lang])}</div>
+          <div class="evidence-card-desc">${escapeHtml(item.desc[state.lang])}</div>
+        </div>
+      </div>
+    `).join("");
+  }
+
+  // 4. Render Suggested Strategy Split (Percentages & Dynamic Calculated Quintals)
+  const sellPct = model.split.sellPct;
+  const holdPct = model.split.holdPct;
+  const sellQty = Math.round((qty * sellPct) / 100);
+  const holdQty = qty - sellQty;
+
+  const splitSellBar = document.getElementById("adv-split-sell-bar");
+  const splitHoldBar = document.getElementById("adv-split-hold-bar");
+  const splitSellPctEl = document.getElementById("adv-split-sell-pct");
+  const splitSellQtyEl = document.getElementById("adv-split-sell-qty");
+  const splitSellDescEl = document.getElementById("adv-split-sell-desc");
+  const splitHoldPctEl = document.getElementById("adv-split-hold-pct");
+  const splitHoldQtyEl = document.getElementById("adv-split-hold-qty");
+  const splitHoldDescEl = document.getElementById("adv-split-hold-desc");
+
+  if (splitSellBar) {
+    splitSellBar.style.width = `${sellPct}%`;
+    splitSellBar.textContent = state.lang === 'gu' ? `વેચો ${sellPct}%` : `Sell ${sellPct}%`;
+  }
+  if (splitHoldBar) {
+    splitHoldBar.style.width = `${holdPct}%`;
+    splitHoldBar.textContent = state.lang === 'gu' ? `રોકો ${holdPct}%` : `Hold ${holdPct}%`;
+  }
+
+  if (splitSellPctEl) splitSellPctEl.textContent = state.lang === 'gu' ? `હમણાં વેચો (${sellPct}%)` : `Sell ${sellPct}% Now`;
+  if (splitSellQtyEl) splitSellQtyEl.textContent = state.lang === 'gu' ? `${sellQty} ક્વિન્ટલ @ ₹${currentPrice.toLocaleString()}` : `${sellQty} Quintals @ ₹${currentPrice.toLocaleString()}`;
+  if (splitSellDescEl) splitSellDescEl.textContent = model.splitSellDesc[state.lang];
+
+  if (splitHoldPctEl) splitHoldPctEl.textContent = state.lang === 'gu' ? `જથ્થો રોકો (${holdPct}%)` : `Hold ${holdPct}%`;
+  if (splitHoldQtyEl) splitHoldQtyEl.textContent = state.lang === 'gu' ? `${holdQty} ક્વિન્ટલ (૧-૨ અઠવાડિયા)` : `${holdQty} Quintals (1–2 Weeks)`;
+  if (splitHoldDescEl) splitHoldDescEl.textContent = model.splitHoldDesc[state.lang];
+
+  // 5. Best Nearby Mandi inside Advisor
+  const mandis = APP_DATA.mandisByDistrict[dist] || APP_DATA.mandisByDistrict.rajkot;
+  const bestMandi = mandis.find(m => m.isBest) || mandis[0];
+  const advNearbyNameEl = document.getElementById("adv-nearby-mandi-name");
+  const advNearbyPriceEl = document.getElementById("adv-nearby-mandi-price");
+  const advNearbyDiffEl = document.getElementById("adv-nearby-mandi-diff");
+
+  if (advNearbyNameEl) advNearbyNameEl.textContent = state.lang === 'gu' ? bestMandi.name_gu : bestMandi.name_en;
+  if (advNearbyPriceEl) advNearbyPriceEl.textContent = `₹${(currentPrice + bestMandi.diff).toLocaleString()} / quintal`;
+  if (advNearbyDiffEl) advNearbyDiffEl.textContent = `(+₹${bestMandi.diff} vs local)`;
 }
 
 // Trigger simulated AI reasoning loading state (with anti-spam rate limiting)
@@ -942,12 +1168,12 @@ function triggerAdvisorAnalysis() {
       recCard.style.opacity = "1";
     }
     renderAdvisorScreen();
-    showToast(state.lang === "gu" ? "✅ AI સલાહ સફળતાપૂર્વક અપડેટ થઈ!" : "✅ AI Analysis Complete! Recommendation updated.");
+    showToast(state.lang === "gu" ? "✅ IBM ગ્રેનાઇટ AI વિશ્લેષણ પૂર્ણ! ભલામણ તૈયાર છે." : "✅ IBM Granite AI Analysis Complete! Selling recommendation updated.");
     state.isAnalyzing = false;
   }, 450);
 }
 
-// Render Buyers Screen (Filterable 5 Static Verified Buyers with Empty State Support)
+// Render Buyers Screen (Filterable 5 Sample Buyers with Transparent Prototype Labels)
 function renderBuyersScreen() {
   const listContainer = document.getElementById("buyers-list");
   if (!listContainer) return;
@@ -1004,7 +1230,7 @@ function renderBuyersScreen() {
           
           <div style="display: flex; align-items: center; justify-content: space-between; margin-top: 6px;">
             <span style="font-size: 0.8rem; font-weight: 700; color: var(--text-secondary);">
-              Trust Rating:
+              Buyer Rating:
             </span>
             <div class="trust-stars" aria-label="Rating ${b.trust} out of 5 stars">
               ${'★'.repeat(b.trust)}${'☆'.repeat(5 - b.trust)} <strong style="color: var(--text-main); font-size: 0.82rem; margin-left: 4px;">${b.trust}.0</strong>
@@ -1031,8 +1257,8 @@ window.contactBuyer = function(buyerId) {
   const buyer = APP_DATA.buyers.find(b => b.id === buyerId);
   const name = buyer ? (state.lang === 'gu' ? buyer.name_gu : buyer.name_en) : "Buyer";
   const msg = state.lang === "gu"
-    ? `✅ સંપર્ક જોડાઈ ગયો! ${escapeHtml(name)} ના અધિકારી ૨ કલાકમાં તમને ફોન કરશે.`
-    : `✅ Contact initiated with ${escapeHtml(name)}! Buyer will call within 2 hours. SMS sent.`;
+    ? `✅ ડેમો સંપર્ક નોંધાયો: ${escapeHtml(name)} સાથે જોડાણ શરૂ થયું. SMS મોકલાયો.`
+    : `✅ Demo inquiry initiated with ${escapeHtml(name)}! Sample SMS notification sent.`;
   showToast(msg);
 
   setTimeout(() => {
@@ -1040,17 +1266,17 @@ window.contactBuyer = function(buyerId) {
   }, 600);
 };
 
-// Render Dashboard Screen (Large ₹ Gain Visual & Comparison Bars)
+// Render Dashboard Screen (Connected to Slider & Staged Selling Simulation)
 function renderDashboardScreen() {
   const qty = state.dashboardQty || 50;
 
-  // Pricing constants for sample sale
+  // Benchmark Pricing for comparison
   const middlemanBasePrice = 6700;
   const middlemanCutPerQtl = 150; // 4% brokerage + discount
   const middlemanNetPerQtl = middlemanBasePrice - middlemanCutPerQtl; // ₹6,550
   const middlemanTotal = qty * middlemanNetPerQtl;
 
-  const kisanlinkPricePerQtl = 7450; // Direct mill procurement
+  const kisanlinkPricePerQtl = 7450; // Staged strategy + direct mill procurement
   const kisanlinkTotal = qty * kisanlinkPricePerQtl;
 
   const netGain = kisanlinkTotal - middlemanTotal;
@@ -1058,8 +1284,8 @@ function renderDashboardScreen() {
 
   // Breakdown values
   const savedBrokerage = qty * 150;
-  const directPriceDiff = qty * (kisanlinkPricePerQtl - middlemanBasePrice);
-  const totalExtraEarnings = netGain;
+  const digitalWeighingGain = qty * 70;
+  const strategicTimingGain = netGain - savedBrokerage - digitalWeighingGain;
 
   // DOM Elements
   const totalGainEl = document.getElementById("dash-gain-number");
@@ -1077,7 +1303,7 @@ function renderDashboardScreen() {
   const totalBenefitEl = document.getElementById("dash-total-benefit-val");
 
   if (totalGainEl) totalGainEl.textContent = `+₹${netGain.toLocaleString()}`;
-  if (pctGainEl) pctGainEl.textContent = `(+${pctGain}% extra income)`;
+  if (pctGainEl) pctGainEl.textContent = `(+${pctGain}% extra realization)`;
   if (middlemanValEl) middlemanValEl.textContent = `₹${middlemanTotal.toLocaleString()}`;
   if (kisanlinkValEl) kisanlinkValEl.textContent = `₹${kisanlinkTotal.toLocaleString()}`;
 
@@ -1094,8 +1320,8 @@ function renderDashboardScreen() {
 
   // Breakdown numbers
   if (savedCommEl) savedCommEl.textContent = `+₹${savedBrokerage.toLocaleString()}`;
-  if (directDiffEl) directDiffEl.textContent = `+₹${directPriceDiff.toLocaleString()}`;
-  if (totalBenefitEl) totalBenefitEl.textContent = `+₹${totalExtraEarnings.toLocaleString()}`;
+  if (directDiffEl) directDiffEl.textContent = `+₹${strategicTimingGain.toLocaleString()}`;
+  if (totalBenefitEl) totalBenefitEl.textContent = `+₹${netGain.toLocaleString()}`;
 
   if (sliderQtyLabel) sliderQtyLabel.textContent = `${qty} Quintals`;
   if (slider) slider.value = qty;
@@ -1120,3 +1346,4 @@ function showToast(message) {
     toast.remove();
   }, 4000);
 }
+
