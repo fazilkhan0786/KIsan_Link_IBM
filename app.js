@@ -76,9 +76,8 @@ const APP_DATA = Object.freeze({
   decisionModels: {
     cotton: {
       action: "partial",
-      actionTitle: { en: "HOLD PARTIALLY", gu: "અડધો પાક વેચો (૫૦%)" },
+      actionTitle: { en: "HOLD PARTIALLY", gu: "૪૦% વેચો, ૬૦% રોકો" },
       confidence: 74,
-      trendPct: "+2.7%",
       split: { sellPct: 40, holdPct: 60 },
       splitSellDesc: {
         en: "Secure immediate cashflow & cover harvest operational costs",
@@ -88,67 +87,22 @@ const APP_DATA = Object.freeze({
         en: "Target ₹7,650/q upside as export & spinning demand strengthens",
         gu: "નિકાસ માંગ વધતાં ₹૭,૬૫૦/ક્વિન્ટલના લક્ષ્ય માટે ૬૦% જથ્થો રોકો"
       },
-      targetPrice: 7650,
-      evidence: [
-        {
-          icon: "📈",
-          title: { en: "Price Trend", gu: "ભાવ ટ્રેન્ડ" },
-          desc: { en: "+2.7% steady gain over the last 7 days with consistent upward momentum.", gu: "છેલ્લા ૭ દિવસમાં ભાવમાં +૨.૭% નો સતત સુધારો અને મજબૂત વલણ." }
-        },
-        {
-          icon: "🏢",
-          title: { en: "Nearby Market Spread", gu: "નજીકના યાર્ડની સરખામણી" },
-          desc: { en: "Gondal Market Yard is currently trading ₹30/q above local benchmark.", gu: "ગોંડલ માર્કેટ યાર્ડમાં સ્થાનિક કરતાં ₹૩૦/ક્વિન્ટલ ઊંચો ભાવ બોલાય છે." }
-        },
-        {
-          icon: "📦",
-          title: { en: "Market Arrivals", gu: "બજાર આવક અને માંગ" },
-          desc: { en: "Saurashtra mandi arrivals are stabilizing while ginning & mill inquiries remain steady.", gu: "સૌરાષ્ટ્ર યાર્ડમાં નવી આવક સ્થિર છે અને જીનીંગ મિલોની સક્રિય માંગ છે." }
-        },
-        {
-          icon: "🎯",
-          title: { en: "Suggested Action", gu: "ભલામણ કરેલ પગલું" },
-          desc: { en: "Avoid selling entire harvest at once; staged 40/60 selling split optimizes realization.", gu: "આજે બધો માલ વેચવાને બદલે ૪૦/૬૦ ના પ્રમાણમાં વેચી સરેરાશ નફો વધારો." }
-        }
-      ]
+      targetPrice: 7650
     },
     groundnut: {
       action: "hold",
       actionTitle: { en: "HOLD 1–2 WEEKS", gu: "૧-૨ અઠવાડિયા રોકો (HOLD)" },
       confidence: 82,
-      trendPct: "+4.1%",
       split: { sellPct: 20, holdPct: 80 },
       splitSellDesc: {
         en: "Sell 20% only if immediate working capital is necessary",
         gu: "જો તાત્કાલિક રોકડની જરૂર હોય તો જ ૨૦% વેચો"
       },
       splitHoldDesc: {
-        en: "Hold 80% for 10–14 days for post-festival oil mill buying surge",
-        gu: "તહેવાર પછી તેલ મિલોની મોટી માંગ માટે ૮૦% જથ્થો સાચવી રાખો"
+        en: "Hold 80% for 10–14 days for post-festival oil mill buying surge (Target: ₹6,580/q)",
+        gu: "તહેવાર પછી તેલ મિલોની મોટી માંગ માટે ૮૦% જથ્થો સાચવી રાખો (લક્ષ્ય: ₹૬,૫૮૦/ક્વિન્ટલ)"
       },
-      targetPrice: 6580,
-      evidence: [
-        {
-          icon: "📈",
-          title: { en: "Price Trend", gu: "ભાવ ટ્રેન્ડ" },
-          desc: { en: "+4.1% solid gain from ₹6,180 to ₹6,420/q over past week.", gu: "છેલ્લા અઠવાડિયામાં ₹૬,૧૮૦ થી વધીને ₹૬,૪૨૦/ક્વિન્ટલ સુધી તેજી." }
-        },
-        {
-          icon: "🏢",
-          title: { en: "Nearby Market Spread", gu: "નજીકના યાર્ડની સરખામણી" },
-          desc: { en: "Junagadh & Keshod APMC offer higher realization on high-oil seed varieties.", gu: "જૂનાગઢ અને કેશોદ APMC માં સારી ગુણવત્તા પર પ્રીમિયમ ભાવ મળે છે." }
-        },
-        {
-          icon: "🏭",
-          title: { en: "Crusher Demand", gu: "તેલ મિલોની ખરીદી" },
-          desc: { en: "Regional oil crushers operating at high capacity with low buffer inventories.", gu: "તેલ મિલોમાં પીલાણ ક્ષમતા વધી છે અને બફર સ્ટોક ઓછો છે." }
-        },
-        {
-          icon: "🎯",
-          title: { en: "Suggested Action", gu: "ભલામણ કરેલ પગલું" },
-          desc: { en: "Hold majority harvest for 10–14 days to maximize season-peak returns.", gu: "વધુ ભાવ મેળવવા માટે મોટો જથ્થો ૧૦-૧૪ દિવસ સાચવી રાખો." }
-        }
-      ]
+      targetPrice: 6580
     }
   },
   // Static List of 5 Sample Buyers (Clearly Labeled as Prototype Profiles)
@@ -476,6 +430,16 @@ function escapeHtml(str) {
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;")
     .replace(/'/g, "&#039;");
+}
+
+// Gujarati Numeral Formatter Utility
+function toGujaratiNumerals(val) {
+  if (val === null || val === undefined) return "";
+  const guDigits = {
+    "0": "૦", "1": "૧", "2": "૨", "3": "૩", "4": "૪",
+    "5": "૫", "6": "૬", "7": "૭", "8": "૮", "9": "૯"
+  };
+  return String(val).replace(/[0-9]/g, d => guDigits[d] !== undefined ? guDigits[d] : d);
 }
 
 // Performance: Debounce Utility for Inputs and Sliders
@@ -883,18 +847,23 @@ function renderHomeSnapshot() {
   const cottonPrice = APP_DATA.priceMatrix.cotton.rajkot[6];
   const groundnutPrice = APP_DATA.priceMatrix.groundnut.junagadh[6];
 
+  const cottonPriceStr = state.lang === 'gu' ? toGujaratiNumerals(cottonPrice.toLocaleString()) : cottonPrice.toLocaleString();
+  const groundnutPriceStr = state.lang === 'gu' ? toGujaratiNumerals(groundnutPrice.toLocaleString()) : groundnutPrice.toLocaleString();
+  const cottonDiffStr = state.lang === 'gu' ? `▲ +₹${toGujaratiNumerals(60)}/ક્વિન્ટલ` : `▲ +₹60/q`;
+  const groundnutDiffStr = state.lang === 'gu' ? `▲ +₹${toGujaratiNumerals(50)}/ક્વિન્ટલ` : `▲ +₹50/q`;
+
   container.innerHTML = `
     <li class="kl-list-item">
       <div class="kl-list-item-left">
         <div class="kl-list-item-avatar" aria-hidden="true">🌿</div>
         <div class="kl-list-item-text">
           <span class="kl-list-item-title">${escapeHtml(state.lang === 'gu' ? 'કપાસ (Cotton) - રાજકોટ યાર્ડ' : 'Cotton - Rajkot Mandi')}</span>
-          <span class="kl-list-item-sub">2,400 Qtl arrivals · Modal Price</span>
+          <span class="kl-list-item-sub">${escapeHtml(state.lang === 'gu' ? '૨,૪૦૦ ક્વિન્ટલ આવક · સરેરાશ બજાર ભાવ' : '2,400 Qtl arrivals · Modal Price')}</span>
         </div>
       </div>
       <div class="kl-list-item-right">
-        <span class="kl-list-item-price">₹${cottonPrice.toLocaleString()}</span>
-        <span class="kl-list-item-trend trend-up">▲ +₹60/q</span>
+        <span class="kl-list-item-price">₹${cottonPriceStr}</span>
+        <span class="kl-list-item-trend trend-up">${cottonDiffStr}</span>
       </div>
     </li>
     <li class="kl-list-item">
@@ -902,12 +871,12 @@ function renderHomeSnapshot() {
         <div class="kl-list-item-avatar" style="background: var(--wheat-100); color: var(--wheat-800);" aria-hidden="true">🥜</div>
         <div class="kl-list-item-text">
           <span class="kl-list-item-title">${escapeHtml(state.lang === 'gu' ? 'મગફળી (Groundnut) - જૂનાગઢ APMC' : 'Groundnut - Junagadh APMC')}</span>
-          <span class="kl-list-item-sub">1,850 Qtl arrivals · Modal Price</span>
+          <span class="kl-list-item-sub">${escapeHtml(state.lang === 'gu' ? '૧,૮૫૦ ક્વિન્ટલ આવક · સરેરાશ બજાર ભાવ' : '1,850 Qtl arrivals · Modal Price')}</span>
         </div>
       </div>
       <div class="kl-list-item-right">
-        <span class="kl-list-item-price">₹${groundnutPrice.toLocaleString()}</span>
-        <span class="kl-list-item-trend trend-up">▲ +₹50/q</span>
+        <span class="kl-list-item-price">₹${groundnutPriceStr}</span>
+        <span class="kl-list-item-trend trend-up">${groundnutDiffStr}</span>
       </div>
     </li>
   `;
@@ -927,13 +896,21 @@ function renderPriceScreen() {
   const priceTrendBadge = document.getElementById("price-current-trend-badge");
   
   if (priceValEl) {
-    priceValEl.textContent = `₹${currentPrice.toLocaleString()}`;
+    priceValEl.textContent = state.lang === 'gu'
+      ? `₹${toGujaratiNumerals(currentPrice.toLocaleString())}`
+      : `₹${currentPrice.toLocaleString()}`;
   }
   
   if (priceTrendBadge) {
     const isUp = diff >= 0;
     priceTrendBadge.className = `kl-card-badge ${isUp ? 'kl-badge--green' : 'kl-badge--wheat'}`;
-    priceTrendBadge.textContent = isUp ? `▲ +₹${diff} today` : `▼ -₹${Math.abs(diff)} today`;
+    if (state.lang === 'gu') {
+      priceTrendBadge.textContent = isUp
+        ? `▲ +₹${toGujaratiNumerals(diff)} આજે`
+        : `▼ -₹${toGujaratiNumerals(Math.abs(diff))} આજે`;
+    } else {
+      priceTrendBadge.textContent = isUp ? `▲ +₹${diff} today` : `▼ -₹${Math.abs(diff)} today`;
+    }
   }
 
   // 2. Render SVG 7-Day Line Chart
@@ -948,17 +925,23 @@ function renderPriceScreen() {
   if (bestNearbyTextEl) {
     const bestName = state.lang === 'gu' ? bestMandi.name_gu : bestMandi.name_en;
     bestNearbyTextEl.textContent = state.lang === 'gu'
-      ? `${bestName} સ્થાનિક યાર્ડ કરતાં +₹${bestMandi.diff}/ક્વિન્ટલ વધુ ભાવ આપે છે`
+      ? `${bestName} સ્થાનિક યાર્ડ કરતાં +₹${toGujaratiNumerals(bestMandi.diff)}/ક્વિન્ટલ વધુ ભાવ આપે છે`
       : `${bestName} offers +₹${bestMandi.diff}/q over local rate`;
   }
 
   if (mandisContainer) {
     mandisContainer.innerHTML = mandis.map((m, idx) => {
       const mandiPrice = currentPrice + m.diff;
+      const mandiPriceStr = state.lang === 'gu'
+        ? `₹${toGujaratiNumerals(mandiPrice.toLocaleString())}`
+        : `₹${mandiPrice.toLocaleString()}`;
+      const mandiTrendStr = state.lang === 'gu'
+        ? toGujaratiNumerals(m.trend)
+        : m.trend;
       return `
         <li class="kl-list-item">
           <div class="kl-list-item-left">
-            <div class="kl-list-item-avatar ${m.isBest ? '' : 'icon-wheat'}">#${idx + 1}</div>
+            <div class="kl-list-item-avatar ${m.isBest ? '' : 'icon-wheat'}">#${state.lang === 'gu' ? toGujaratiNumerals(idx + 1) : idx + 1}</div>
             <div class="kl-list-item-text">
               <span class="kl-list-item-title">${escapeHtml(state.lang === 'gu' ? m.name_gu : m.name_en)} ${m.isBest ? '⭐' : ''}</span>
               <span class="kl-list-item-sub">
@@ -968,8 +951,8 @@ function renderPriceScreen() {
             </div>
           </div>
           <div class="kl-list-item-right">
-            <span class="kl-list-item-price">₹${mandiPrice.toLocaleString()}</span>
-            <span class="kl-list-item-trend trend-up">${escapeHtml(m.trend)}</span>
+            <span class="kl-list-item-price">${mandiPriceStr}</span>
+            <span class="kl-list-item-trend trend-up">${escapeHtml(mandiTrendStr)}</span>
           </div>
         </li>
       `;
@@ -1025,20 +1008,23 @@ function renderSVGChart(data) {
       <path class="chart-line" d="${linePath}"/>
 
       <!-- Points, Labels and Values -->
-      ${points.map((pt, i) => `
-        <circle class="chart-point ${i === points.length - 1 ? 'chart-point-active' : ''}" cx="${pt.x}" cy="${pt.y}" role="presentation"/>
-        ${(i === 0 || i === Math.floor(points.length / 2) || i === points.length - 1) ? `
-          <text class="chart-val-label" x="${pt.x}" y="${pt.y - 8}">₹${pt.val}</text>
-        ` : ''}
-        <text class="chart-label" x="${pt.x}" y="${height - 8}">${escapeHtml(pt.date)}</text>
-      `).join("")}
+      ${points.map((pt, i) => {
+        const valStr = state.lang === 'gu' ? `₹${toGujaratiNumerals(pt.val)}` : `₹${pt.val}`;
+        return `
+          <circle class="chart-point ${i === points.length - 1 ? 'chart-point-active' : ''}" cx="${pt.x}" cy="${pt.y}" role="presentation"/>
+          ${(i === 0 || i === Math.floor(points.length / 2) || i === points.length - 1) ? `
+            <text class="chart-val-label" x="${pt.x}" y="${pt.y - 8}">${valStr}</text>
+          ` : ''}
+          <text class="chart-label" x="${pt.x}" y="${height - 8}">${escapeHtml(pt.date)}</text>
+        `;
+      }).join("")}
     </svg>
   `;
 
   chartBox.innerHTML = svgContent;
 }
 
-// Render Advisor Screen & Deep Recommendation Models
+// Render Advisor Screen & Deep Recommendation Models (Single Source of Truth)
 function renderAdvisorScreen() {
   const crop = state.selectedCrop;
   const dist = state.selectedDistrict;
@@ -1046,13 +1032,19 @@ function renderAdvisorScreen() {
   const model = APP_DATA.decisionModels[crop] || APP_DATA.decisionModels.cotton;
   
   const series = APP_DATA.priceMatrix[crop][dist];
+  const startPrice = series[0];
   const currentPrice = series[series.length - 1];
+  const rawDiff = currentPrice - startPrice;
+  const trendPctVal = Math.abs(((rawDiff / startPrice) * 100)).toFixed(1);
+  const trendSign = rawDiff >= 0 ? "+" : "-";
+  const trendPctStr = `${trendSign}${trendPctVal}%`;
+  const trendPctGu = `${trendSign}${toGujaratiNumerals(trendPctVal)}%`;
 
   const recCard = document.getElementById("advisor-recommendation-card");
   const recBadge = document.getElementById("adv-conf-badge");
   const recActionText = document.getElementById("adv-rec-action-text");
   
-  // 1. Current Condition Strip
+  // 1. Current Condition Strip (Single Source of Truth from dataset)
   const cropObj = APP_DATA.crops.find(c => c.id === crop);
   const distObj = APP_DATA.districts.find(d => d.id === dist);
   const cropName = state.lang === 'gu' ? cropObj.name_gu : cropObj.name_en;
@@ -1063,8 +1055,16 @@ function renderAdvisorScreen() {
   const condTrendEl = document.getElementById("adv-cond-trend");
 
   if (condCropDistEl) condCropDistEl.textContent = `${cropName} · ${distName}`;
-  if (condPriceEl) condPriceEl.textContent = `₹${currentPrice.toLocaleString()} / quintal`;
-  if (condTrendEl) condTrendEl.textContent = `7-Day Trend: ${model.trendPct}`;
+  if (condPriceEl) {
+    condPriceEl.textContent = state.lang === 'gu'
+      ? `₹${toGujaratiNumerals(currentPrice.toLocaleString())} / ક્વિન્ટલ`
+      : `₹${currentPrice.toLocaleString()} / quintal`;
+  }
+  if (condTrendEl) {
+    condTrendEl.textContent = state.lang === 'gu'
+      ? `૭-દિવસનો ટ્રેન્ડ: ${trendPctGu}`
+      : `7-Day Trend: ${trendPctStr}`;
+  }
 
   if (!recCard) return;
 
@@ -1078,13 +1078,91 @@ function renderAdvisorScreen() {
 
   if (recBadge) {
     recBadge.className = `kl-card-badge ${model.action === 'sell' ? 'kl-badge--green' : model.action === 'hold' ? 'kl-badge--wheat' : 'kl-badge--blue'}`;
-    recBadge.textContent = state.lang === 'gu' ? `વિશ્વાસ: ${model.confidence}%` : `Confidence: ${model.confidence}%`;
+    recBadge.textContent = state.lang === 'gu' 
+      ? `વિશ્વાસ: ${toGujaratiNumerals(model.confidence)}%` 
+      : `Confidence: ${model.confidence}%`;
   }
 
-  // 3. Render "Why this recommendation?" 4 Structured Evidence Cards
+  // Best nearby mandi for selected district
+  const mandis = APP_DATA.mandisByDistrict[dist] || APP_DATA.mandisByDistrict.rajkot;
+  const bestMandi = mandis.find(m => m.isBest) || mandis[0];
+  const bestMandiName = state.lang === 'gu' ? bestMandi.name_gu : bestMandi.name_en;
+  const bestMandiDiffGu = toGujaratiNumerals(bestMandi.diff);
+  const bestMandiPrice = currentPrice + bestMandi.diff;
+
+  // 3. Render "Why this recommendation?" 4 Structured Evidence Cards (Single source of truth)
   const evidenceGrid = document.getElementById("adv-evidence-grid");
   if (evidenceGrid) {
-    evidenceGrid.innerHTML = model.evidence.map(item => `
+    const isCotton = crop === "cotton";
+    const evidenceItems = isCotton ? [
+      {
+        icon: "📈",
+        title: { en: "Price Trend", gu: "ભાવ ટ્રેન્ડ" },
+        desc: {
+          en: `${trendPctStr} steady gain from ₹${startPrice.toLocaleString()} to ₹${currentPrice.toLocaleString()}/q over the last 7 days.`,
+          gu: `છેલ્લા ૭ દિવસમાં ભાવ ₹${toGujaratiNumerals(startPrice.toLocaleString())} થી વધીને ₹${toGujaratiNumerals(currentPrice.toLocaleString())}/ક્વિન્ટલ (${trendPctGu}) સુધી સતત સુધર્યા છે.`
+        }
+      },
+      {
+        icon: "🏢",
+        title: { en: "Nearby Market Spread", gu: "નજીકના યાર્ડની સરખામણી" },
+        desc: {
+          en: `${bestMandi.name_en} is currently trading ₹${bestMandi.diff}/q above local benchmark.`,
+          gu: `${bestMandi.name_gu} માં સ્થાનિક કરતાં ₹${bestMandiDiffGu}/ક્વિન્ટલ ઊંચો ભાવ બોલાય છે.`
+        }
+      },
+      {
+        icon: "📦",
+        title: { en: "Market Arrivals", gu: "બજાર આવક અને માંગ" },
+        desc: {
+          en: "Saurashtra mandi arrivals are stabilizing while ginning & mill inquiries remain steady.",
+          gu: "સૌરાષ્ટ્ર યાર્ડમાં નવી આવક સ્થિર છે અને જીનીંગ મિલોની સક્રિય માંગ છે."
+        }
+      },
+      {
+        icon: "🎯",
+        title: { en: "Suggested Action", gu: "ભલામણ કરેલ પગલું" },
+        desc: {
+          en: "Avoid selling entire harvest at once; staged 40/60 selling split optimizes realization.",
+          gu: "આજે બધો માલ વેચવાને બદલે ૪૦/૬૦ ના પ્રમાણમાં વેચી સરેરાશ નફો વધારો."
+        }
+      }
+    ] : [
+      {
+        icon: "📈",
+        title: { en: "Price Trend", gu: "ભાવ ટ્રેન્ડ" },
+        desc: {
+          en: `${trendPctStr} steady gain from ₹${startPrice.toLocaleString()} to ₹${currentPrice.toLocaleString()}/q over the last 7 days.`,
+          gu: `છેલ્લા ૭ દિવસમાં ભાવ ₹${toGujaratiNumerals(startPrice.toLocaleString())} થી વધીને ₹${toGujaratiNumerals(currentPrice.toLocaleString())}/ક્વિન્ટલ (${trendPctGu}) સુધી સતત સુધર્યા છે.`
+        }
+      },
+      {
+        icon: "🏢",
+        title: { en: "Nearby Market Spread", gu: "નજીકના યાર્ડની સરખામણી" },
+        desc: {
+          en: `${bestMandi.name_en} offers premium realization (+₹${bestMandi.diff}/q) on high-oil seed varieties.`,
+          gu: `${bestMandi.name_gu} માં સારી તેલ ગુણવત્તા પર પ્રીમિયમ ભાવ (+₹${bestMandiDiffGu}/ક્વિન્ટલ) મળે છે.`
+        }
+      },
+      {
+        icon: "🏭",
+        title: { en: "Crusher Demand", gu: "તેલ મિલોની ખરીદી" },
+        desc: {
+          en: "Regional oil crushers operating at high capacity with low buffer inventories.",
+          gu: "તેલ મિલોમાં પીલાણ ક્ષમતા વધી છે અને બફર સ્ટોક ઓછો છે."
+        }
+      },
+      {
+        icon: "🎯",
+        title: { en: "Suggested Action", gu: "ભલામણ કરેલ પગલું" },
+        desc: {
+          en: "Hold 80% harvest for 10–14 days for post-festival buying surge (Target: ₹6,580/q).",
+          gu: "તહેવાર પછીના ઊંચા ભાવ (લક્ષ્ય: ₹૬,૫૮૦/ક્વિન્ટલ) માટે ૮૦% જથ્થો ૧૦-૧૪ દિવસ સાચવી રાખો."
+        }
+      }
+    ];
+
+    evidenceGrid.innerHTML = evidenceItems.map(item => `
       <div class="evidence-card">
         <div class="evidence-card-icon" aria-hidden="true">${item.icon}</div>
         <div class="evidence-card-content">
@@ -1112,31 +1190,53 @@ function renderAdvisorScreen() {
 
   if (splitSellBar) {
     splitSellBar.style.width = `${sellPct}%`;
-    splitSellBar.textContent = state.lang === 'gu' ? `વેચો ${sellPct}%` : `Sell ${sellPct}%`;
+    splitSellBar.textContent = state.lang === 'gu' ? `વેચો ${toGujaratiNumerals(sellPct)}%` : `Sell ${sellPct}%`;
   }
   if (splitHoldBar) {
     splitHoldBar.style.width = `${holdPct}%`;
-    splitHoldBar.textContent = state.lang === 'gu' ? `રોકો ${holdPct}%` : `Hold ${holdPct}%`;
+    splitHoldBar.textContent = state.lang === 'gu' ? `રોકો ${toGujaratiNumerals(holdPct)}%` : `Hold ${holdPct}%`;
   }
 
-  if (splitSellPctEl) splitSellPctEl.textContent = state.lang === 'gu' ? `હમણાં વેચો (${sellPct}%)` : `Sell ${sellPct}% Now`;
-  if (splitSellQtyEl) splitSellQtyEl.textContent = state.lang === 'gu' ? `${sellQty} ક્વિન્ટલ @ ₹${currentPrice.toLocaleString()}` : `${sellQty} Quintals @ ₹${currentPrice.toLocaleString()}`;
-  if (splitSellDescEl) splitSellDescEl.textContent = model.splitSellDesc[state.lang];
+  if (splitSellPctEl) {
+    splitSellPctEl.textContent = state.lang === 'gu' ? `હમણાં વેચો (${toGujaratiNumerals(sellPct)}%)` : `Sell ${sellPct}% Now`;
+  }
+  if (splitSellQtyEl) {
+    splitSellQtyEl.textContent = state.lang === 'gu' 
+      ? `${toGujaratiNumerals(sellQty)} ક્વિન્ટલ @ ₹${toGujaratiNumerals(currentPrice.toLocaleString())}` 
+      : `${sellQty} Quintals @ ₹${currentPrice.toLocaleString()}`;
+  }
+  if (splitSellDescEl) {
+    splitSellDescEl.textContent = model.splitSellDesc[state.lang];
+  }
 
-  if (splitHoldPctEl) splitHoldPctEl.textContent = state.lang === 'gu' ? `જથ્થો રોકો (${holdPct}%)` : `Hold ${holdPct}%`;
-  if (splitHoldQtyEl) splitHoldQtyEl.textContent = state.lang === 'gu' ? `${holdQty} ક્વિન્ટલ (૧-૨ અઠવાડિયા)` : `${holdQty} Quintals (1–2 Weeks)`;
-  if (splitHoldDescEl) splitHoldDescEl.textContent = model.splitHoldDesc[state.lang];
+  if (splitHoldPctEl) {
+    splitHoldPctEl.textContent = state.lang === 'gu' ? `જથ્થો રોકો (${toGujaratiNumerals(holdPct)}%)` : `Hold ${holdPct}%`;
+  }
+  if (splitHoldQtyEl) {
+    splitHoldQtyEl.textContent = state.lang === 'gu' 
+      ? `${toGujaratiNumerals(holdQty)} ક્વિન્ટલ (૧-૨ અઠવાડિયા)` 
+      : `${holdQty} Quintals (1–2 Weeks)`;
+  }
+  if (splitHoldDescEl) {
+    splitHoldDescEl.textContent = model.splitHoldDesc[state.lang];
+  }
 
   // 5. Best Nearby Mandi inside Advisor
-  const mandis = APP_DATA.mandisByDistrict[dist] || APP_DATA.mandisByDistrict.rajkot;
-  const bestMandi = mandis.find(m => m.isBest) || mandis[0];
   const advNearbyNameEl = document.getElementById("adv-nearby-mandi-name");
   const advNearbyPriceEl = document.getElementById("adv-nearby-mandi-price");
   const advNearbyDiffEl = document.getElementById("adv-nearby-mandi-diff");
 
-  if (advNearbyNameEl) advNearbyNameEl.textContent = state.lang === 'gu' ? bestMandi.name_gu : bestMandi.name_en;
-  if (advNearbyPriceEl) advNearbyPriceEl.textContent = `₹${(currentPrice + bestMandi.diff).toLocaleString()} / quintal`;
-  if (advNearbyDiffEl) advNearbyDiffEl.textContent = `(+₹${bestMandi.diff} vs local)`;
+  if (advNearbyNameEl) advNearbyNameEl.textContent = bestMandiName;
+  if (advNearbyPriceEl) {
+    advNearbyPriceEl.textContent = state.lang === 'gu'
+      ? `₹${toGujaratiNumerals(bestMandiPrice.toLocaleString())} / ક્વિન્ટલ`
+      : `₹${bestMandiPrice.toLocaleString()} / quintal`;
+  }
+  if (advNearbyDiffEl) {
+    advNearbyDiffEl.textContent = state.lang === 'gu'
+      ? `(+₹${bestMandiDiffGu} સ્થાનિક કરતાં વધુ)`
+      : `(+₹${bestMandi.diff} vs local)`;
+  }
 }
 
 // Trigger simulated AI reasoning loading state (with anti-spam rate limiting)
@@ -1198,6 +1298,12 @@ function renderBuyersScreen() {
 
   listContainer.innerHTML = filtered.map(b => {
     const isCotton = b.crop_id === "cotton";
+    const priceStr = state.lang === 'gu'
+      ? `₹${toGujaratiNumerals(b.price.toLocaleString())}/ક્વિન્ટલ`
+      : `₹${b.price.toLocaleString()}/q`;
+    const ratingStr = state.lang === 'gu'
+      ? `${toGujaratiNumerals(b.trust)}.૦`
+      : `${b.trust}.0`;
     return `
       <div class="kl-card kl-card--highlight">
         <div class="kl-card-header">
@@ -1224,16 +1330,16 @@ function renderBuyersScreen() {
             </div>
             <div style="background: rgba(255, 255, 255, 0.7); padding: 8px 12px; border-radius: var(--radius-sm); border: 1px solid rgba(0,0,0,0.04);">
               <span style="font-size: 0.75rem; color: var(--text-secondary); font-weight: 600;">${escapeHtml(t.offeredPrice)}</span>
-              <div style="font-weight: 900; font-size: 1.15rem; color: var(--green-800);">₹${b.price.toLocaleString()}/q</div>
+              <div style="font-weight: 900; font-size: 1.15rem; color: var(--green-800);">${priceStr}</div>
             </div>
           </div>
           
           <div style="display: flex; align-items: center; justify-content: space-between; margin-top: 6px;">
             <span style="font-size: 0.8rem; font-weight: 700; color: var(--text-secondary);">
-              Buyer Rating:
+              ${state.lang === 'gu' ? 'રેટિંગ / વિશ્વાસ:' : 'Buyer Rating:'}
             </span>
             <div class="trust-stars" aria-label="Rating ${b.trust} out of 5 stars">
-              ${'★'.repeat(b.trust)}${'☆'.repeat(5 - b.trust)} <strong style="color: var(--text-main); font-size: 0.82rem; margin-left: 4px;">${b.trust}.0</strong>
+              ${'★'.repeat(b.trust)}${'☆'.repeat(5 - b.trust)} <strong style="color: var(--text-main); font-size: 0.82rem; margin-left: 4px;">${ratingStr}</strong>
             </div>
           </div>
         </div>
@@ -1302,28 +1408,64 @@ function renderDashboardScreen() {
   const directDiffEl = document.getElementById("dash-direct-diff-val");
   const totalBenefitEl = document.getElementById("dash-total-benefit-val");
 
-  if (totalGainEl) totalGainEl.textContent = `+₹${netGain.toLocaleString()}`;
-  if (pctGainEl) pctGainEl.textContent = `(+${pctGain}% extra realization)`;
-  if (middlemanValEl) middlemanValEl.textContent = `₹${middlemanTotal.toLocaleString()}`;
-  if (kisanlinkValEl) kisanlinkValEl.textContent = `₹${kisanlinkTotal.toLocaleString()}`;
+  if (totalGainEl) {
+    totalGainEl.textContent = state.lang === 'gu'
+      ? `+₹${toGujaratiNumerals(netGain.toLocaleString())}`
+      : `+₹${netGain.toLocaleString()}`;
+  }
+  if (pctGainEl) {
+    pctGainEl.textContent = state.lang === 'gu'
+      ? `(+${toGujaratiNumerals(pctGain)}% વધારાનો નફો)`
+      : `(+${pctGain}% extra realization)`;
+  }
+  if (middlemanValEl) {
+    middlemanValEl.textContent = state.lang === 'gu'
+      ? `₹${toGujaratiNumerals(middlemanTotal.toLocaleString())}`
+      : `₹${middlemanTotal.toLocaleString()}`;
+  }
+  if (kisanlinkValEl) {
+    kisanlinkValEl.textContent = state.lang === 'gu'
+      ? `₹${toGujaratiNumerals(kisanlinkTotal.toLocaleString())}`
+      : `₹${kisanlinkTotal.toLocaleString()}`;
+  }
 
   // Bar Fill Widths
   if (kisanlinkBar) {
     kisanlinkBar.style.width = "100%";
-    kisanlinkBar.textContent = `₹${kisanlinkTotal.toLocaleString()}`;
+    kisanlinkBar.textContent = state.lang === 'gu'
+      ? `₹${toGujaratiNumerals(kisanlinkTotal.toLocaleString())}`
+      : `₹${kisanlinkTotal.toLocaleString()}`;
   }
   if (middlemanBar) {
     const ratio = Math.round((middlemanTotal / kisanlinkTotal) * 100);
     middlemanBar.style.width = `${ratio}%`;
-    middlemanBar.textContent = `₹${middlemanTotal.toLocaleString()}`;
+    middlemanBar.textContent = state.lang === 'gu'
+      ? `₹${toGujaratiNumerals(middlemanTotal.toLocaleString())}`
+      : `₹${middlemanTotal.toLocaleString()}`;
   }
 
   // Breakdown numbers
-  if (savedCommEl) savedCommEl.textContent = `+₹${savedBrokerage.toLocaleString()}`;
-  if (directDiffEl) directDiffEl.textContent = `+₹${strategicTimingGain.toLocaleString()}`;
-  if (totalBenefitEl) totalBenefitEl.textContent = `+₹${netGain.toLocaleString()}`;
+  if (savedCommEl) {
+    savedCommEl.textContent = state.lang === 'gu'
+      ? `+₹${toGujaratiNumerals(savedBrokerage.toLocaleString())}`
+      : `+₹${savedBrokerage.toLocaleString()}`;
+  }
+  if (directDiffEl) {
+    directDiffEl.textContent = state.lang === 'gu'
+      ? `+₹${toGujaratiNumerals(strategicTimingGain.toLocaleString())}`
+      : `+₹${strategicTimingGain.toLocaleString()}`;
+  }
+  if (totalBenefitEl) {
+    totalBenefitEl.textContent = state.lang === 'gu'
+      ? `+₹${toGujaratiNumerals(netGain.toLocaleString())}`
+      : `+₹${netGain.toLocaleString()}`;
+  }
 
-  if (sliderQtyLabel) sliderQtyLabel.textContent = `${qty} Quintals`;
+  if (sliderQtyLabel) {
+    sliderQtyLabel.textContent = state.lang === 'gu'
+      ? `${toGujaratiNumerals(qty)} ક્વિન્ટલ`
+      : `${qty} Quintals`;
+  }
   if (slider) slider.value = qty;
 }
 
